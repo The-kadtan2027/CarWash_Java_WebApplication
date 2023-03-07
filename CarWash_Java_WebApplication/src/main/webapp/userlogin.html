@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login page</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div>
+    <div class="wrapper">
         <h1>User Login</h1>
         <form action="userlogin" method="post">
             <div class="uname">
-                <label for="uname">Username: </label>
-                <input type="text" name="uname" id="uname">
+                <input type="text" placeholder="Username" name="uname" id="uname">
             </div>
             <div class="pword">
-                <label for="pword">Password: </label>
-                <input type="password" name="pword" id="pword">
-                <label for="show">
+                <input type="password" placeholder="Password" name="pword" id="pword">
+                <!-- <label for="show">
                     <input type="checkbox" name="show" id="show"> Show Password
-                </label>
+                </label> -->
             </div>
-            <button name="btn" value="login">Login</button>
-            <button name="btn" value="signup">Signup</button>
+            <div class="btn">
+
+                <button name="btn" value="signin">SignIn</button>
+                <button name="btn" value="signup">SignUp</button>
+            </div>
+            <a href="adminlogin.html">Login as Admin</a>
         </form>
-        
+
     </div>
     <div>
-        <a href="adminlogin.html">login as admin</a>
+
     </div>
 </body>
+
 </html>

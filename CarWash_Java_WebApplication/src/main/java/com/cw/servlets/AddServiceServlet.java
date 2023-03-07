@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cw.dao.ServiceDAO;
+import com.cw.dto.AdminBean;
 import com.cw.dto.ServiceBean;
 
 @SuppressWarnings("serial")
@@ -23,19 +25,33 @@ public class AddServiceServlet extends HttpServlet {
 		PrintWriter pw = res.getWriter();
 		res.setContentType("text/html");
 		
-		ServiceBean sb = new ServiceBean(req.getParameter("sname"), Float.parseFloat(req.getParameter("cost")));
+		HttpSession hs = req.getSession(false);
+		AdminBean ab = (AdminBean)hs.getAttribute("admin");
 		
-		int in = new ServiceDAO().addService(sb);
-		
-		if(in>0) {
-			RequestDispatcher rd = req.getRequestDispatcher("/addservice.html");
-			pw.println("<h3>new Service added</he>");
-			rd.include(req, res);
+		if(ab == null) {
+			pw.println("<h1>login first</h1>");
+			pw.println("<a href='adminlogin.html'>go to login</a>");
+
+			RequestDispatcher rd = req.getRequestDispatcher("/adminlogin.html");
+			rd.forward(req, res);
+			
 		}
 		else {
-			RequestDispatcher rd = req.getRequestDispatcher("/addservice.html");
-			pw.println("<h3>Service Not added....!</he>");
-			rd.include(req, res);
+			ServiceBean sb = new ServiceBean(req.getParameter("sname"), Float.parseFloat(req.getParameter("cost")));
+			
+			int in = new ServiceDAO().addService(sb);
+			
+			if(in>0) {
+				RequestDispatcher rd = req.getRequestDispatcher("/addservice.html");
+				pw.println("<h3>new Service added</he>");
+				rd.include(req, res);
+			}
+			else {
+				RequestDispatcher rd = req.getRequestDispatcher("/addservice.html");
+				pw.println("<h3>Service Not added....!</he>");
+				rd.include(req, res);
+			}
 		}
+		
 	}
 }
