@@ -1,50 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta
-	http-equiv="X-UA-Compatible"
-	content="IE=edge"
->
-<meta
-	name="viewport"
-	content="width=device-width, initial-scale=1.0"
->
-<title>Admin Login Page</title>
-</head>
-<body>
-	<div class="main">
-		<div class="form">
-			<form
-				action="adminlogin"
-				method="post"
-			>
-				<div class="uname">
-					<label for="uname">Username</label> <input
-						type="text"
-						name="uname"
-						id="uname"
-					>
-				</div>
-				<div class="pword">
-					<label for="pword">Password</label> <input
-						type="password"
-						name="pword"
-						id="pword"
-					>
-					<div>
-						<label for="show"> <input
-							type="checkbox"
-							name="show"
-							id="show"
-						> Show password
-						</label>
-					</div>
-				</div>
 
-				<button>Login</button>
-			</form>
-		</div>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Admin Login Page</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<h1>Admin Login</h1>
+		<form action="adminlogin" method="post">
+			<div class="uname">
+				<input type="text" placeholder="Username" name="uname" id="uname">
+			</div>
+			<div class="pword">
+				<input type="password" placeholder="Password" name="pword" id="pword">
+
+			</div>
+
+			<button>Login</button>
+		</form>
+
 	</div>
 </body>
+
 </html>

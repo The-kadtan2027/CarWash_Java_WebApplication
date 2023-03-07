@@ -21,23 +21,19 @@ public class AdminLoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		
-		//get PrintWriter object
-		PrintWriter pw = res.getWriter();
-		
-		//set MIME type
-		res.setContentType("text/html");
 		
 		AdminBean ab = new AdminBeanDAO().login(req);
 		
 		if(ab == null) {
-			RequestDispatcher rd = req.getRequestDispatcher("/adminlogin.html");
-			pw.println("<h3 style='color:red'>invalid username or password</h3>");
-			rd.include(req, res);
+			req.setAttribute("msg", "Invalid UserName of Password");
+			RequestDispatcher rd = req.getRequestDispatcher("/Error.jsp");
+			
+			rd.forward(req, res);
 		}
 		else {
 			HttpSession session = req.getSession();
 			session.setAttribute("admin", ab);
-			RequestDispatcher rd = req.getRequestDispatcher("/adminpanel.html");
+			RequestDispatcher rd = req.getRequestDispatcher("/AdminPanel.jsp");
 			rd.include(req, res);
 			
 		}

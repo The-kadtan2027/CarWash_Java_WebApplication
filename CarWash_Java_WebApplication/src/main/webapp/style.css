@@ -1,0 +1,210 @@
+body {
+    margin: auto;
+    padding: 30px 0;
+
+    /* Background */
+
+    background: #A7D7C5;
+}
+.container-row > input{
+	width: 50px;
+	height: 100px
+	
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    align-items: center;
+    width: 600px;
+    margin: auto;
+
+
+    /* Form Bg */
+
+    background: #F6FBF9;
+    border-radius: 49.0901px;
+
+}
+
+h1 {
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 72px;
+    /* or 130% */
+
+    color: #32403B;
+    text-align: center;
+}
+
+form {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+form>div {
+    padding: 10px;
+    margin: auto;
+
+}
+
+input {
+    padding-left: 20px;
+    width: 80%;
+    height: 3rem;
+    background: #FFFFFF;
+    border: 1.53407px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15.3407px;
+
+}
+
+input::placeholder {
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 400;
+    /* identical to box height, or 85% */
+
+    text-align: left;
+    padding-left: 10px;
+
+    color: rgba(0, 0, 0, 0.5);
+
+}
+
+textarea {
+    padding-left: 20px;
+    width: 80%;
+    height: 3rem;
+    background: #FFFFFF;
+    border: 1.53407px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15.3407px;
+}
+
+textarea::placeholder {
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 400;
+    /* identical to box height, or 85% */
+
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 10px;
+
+    color: rgba(0, 0, 0, 0.5);
+
+}
+
+
+button {
+    cursor: pointer;
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 33.7495px;
+    line-height: 44px;
+    /* or 130% */
+
+    text-align: center;
+    border: 1px solid #FFFFFF;
+    width: 200px;
+    height: 60px;
+    color: #FFFFFF;
+    background: #84C7AE;
+    border-radius: 23.011px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+a {
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    /* or 130% */
+
+    text-align: center;
+
+    /* Paragraph */
+
+    color: #32403B;
+}
+
+.service {
+    /* 
+	display: flex;
+	align-items: center;
+	justify-content: center; */
+    margin: auto;
+    text-align: center;
+
+}
+
+.service>label>input {
+    width: 15px;
+    height: 10px;
+
+}
+
+
+/* view bookings stayles */
+.booking-view {
+    display: flex;
+}
+
+.form-container>button {
+    font-size: 20px;
+}
+
+
+/* Navigation view */
+.admin-panel {
+    padding-top: 0;
+}
+
+.nav {
+    width: 100%;
+    height: 50px;
+    border-radius: 0 0 10px 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.nav>div>a {
+    padding: 10px;
+
+    border: 1.53407px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15.3407px;
+    text-decoration: none;
+}
+
+/* accept and reject */
+
+.booking {
+	width: 800px;
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 10px;
+	
+}
+
+.booking > form > div {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+input[type="submit"] {
+	width: 80px;
+	height: 40px
+}

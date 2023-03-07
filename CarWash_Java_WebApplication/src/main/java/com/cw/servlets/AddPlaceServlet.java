@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cw.dao.PlaceDAO;
+import com.cw.dto.AdminBean;
 import com.cw.dto.PlaceBean;
 
 
@@ -24,19 +26,33 @@ public class AddPlaceServlet extends HttpServlet {
 		PrintWriter pw = res.getWriter();
 		res.setContentType("text/html");
 		
-		PlaceBean pb = new PlaceBean(req.getParameter("place"));
+		HttpSession hs = req.getSession(false);
+		AdminBean ab = (AdminBean) hs.getAttribute("admin");
 		
-		int in = new PlaceDAO().addPlace(pb);
-		
-		if(in>0) {
-			RequestDispatcher rd = req.getRequestDispatcher("/addplace.html");
-			pw.println("<h3>new Place added</he>");
-			rd.include(req, res);
-		}
-		else {
-			RequestDispatcher rd = req.getRequestDispatcher("/addplace.html");
-			pw.println("<h3 style='color:red;'>Failed to add Place</he>");
-			rd.include(req, res);
+		if(ab == null) {
+				pw.println("<h1>login first</h1>");
+				pw.println("<a href='adminlogin.html'>go to login</a>");
+
+				RequestDispatcher rd = req.getRequestDispatcher("/adminlogin.html");
+				rd.forward(req, res);
+				
+			
+		}else {
+			
+			PlaceBean pb = new PlaceBean(req.getParameter("place"));
+			
+			int in = new PlaceDAO().addPlace(pb);
+			
+			if(in>0) {
+				RequestDispatcher rd = req.getRequestDispatcher("/addplace.html");
+				pw.println("<h3>new Place added</he>");
+				rd.include(req, res);
+			}
+			else {
+				RequestDispatcher rd = req.getRequestDispatcher("/addplace.html");
+				pw.println("<h3 style='color:red;'>Failed to add Place</he>");
+				rd.include(req, res);
+			}
 		}
 		
 	}
