@@ -11,6 +11,59 @@ import com.cw.dto.UserBean;
 
 public class UserBeanDAO {
 	
+	public boolean isRegistered(String username) {
+		boolean f = false;
+		try {
+			
+			PreparedStatement ps = OpenConnection.con.prepareStatement("Select mailId from users where username=?");
+			
+			ps.setString(1, username);
+			
+			if(ps.executeUpdate()>0) {
+				f = true;
+			}
+			
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}
+		return f;
+		
+	}
+	
+	public boolean isExitstMailId(String mailId) {
+		boolean f = false;
+		try {
+			
+			PreparedStatement ps = OpenConnection.con.prepareStatement("Select username from users where mailid=?");
+			
+			ps.setString(1, mailId);
+			
+			if(ps.executeUpdate()>0) {
+				f = true;
+			}
+			
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}
+		return f;
+	}
+	public boolean isExitstPhone(String phone) {
+		boolean f = false;
+		try {
+			
+			PreparedStatement ps = OpenConnection.con.prepareStatement("Select username from users where phone=?");
+			
+			ps.setString(1, phone);
+			
+			if(ps.executeUpdate()>0) {
+				f = true;
+			}
+			
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}
+		return f;
+	}
 	
 	public int register(UserBean ub) {
 		int n = 0;

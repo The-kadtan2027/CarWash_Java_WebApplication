@@ -20,12 +20,13 @@ public class AcceptRejectServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		String btn = req.getParameter("btn");
-		System.out.println(btn);
+		
 		int k = new BookingsDAO().acceptReject(req);
-
-		ArrayList<BookingsBean> bookingsList = new BookingsDAO().getPendingBookings();
-		req.setAttribute("bookings", bookingsList);
-		req.getRequestDispatcher("/Accept.jsp").forward(req, res);
+		if(k>0) {
+			req.getRequestDispatcher("/Accept.jsp").forward(req, res);
+		}else {
+			System.out.println("something got stuck");
+		}
 		
 	}
 }

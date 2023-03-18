@@ -2,25 +2,26 @@
     pageEncoding="ISO-8859-1"
     import="java.util.ArrayList"
     import="com.cw.dto.BookingsBean"
+    import="com.cw.dao.BookingsDAO"
     %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Accept and Reject Slot</title>
+<title>Accept and Reject Bookings</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body class="admin-panel">
 	<%
-		ArrayList<BookingsBean> bookings = (ArrayList<BookingsBean>)request.getAttribute("bookings");
+		ArrayList<BookingsBean> bookings = new BookingsDAO().getPendingBookings();
 	%>
 	<div class="wrapper nav">
 
         <div>
-            <a  href="addplace.html">Add Places</a>
+            <a  href="addplaceview">Add Places</a>
         </div>
         <div>
-            <a href="addservice.html">Add Services</a>
+            <a href="addservicesview">Add Services</a>
         </div>
         <div>
             <a href="ViewBookings.jsp">View All Bookings</a>

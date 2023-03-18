@@ -33,16 +33,15 @@ public class RegisterUserServlet extends HttpServlet {
 		int n = new UserBeanDAO().register(ub);
 		
 		PrintWriter pw = res.getWriter();
-		res.setContentType("text/html");
 		
 		if(n>0) {
-			RequestDispatcher rd = req.getRequestDispatcher("/userlogin.html");
-			pw.println("<h3> Signup Completed...</h3>");
-			rd.include(req, res);
+			req.setAttribute("username", uname);
+			req.getRequestDispatcher("/LoginUser.jsp").forward(req, res);
+			
 		}else {
-			RequestDispatcher rd = req.getRequestDispatcher("/registeruser.html");
-			pw.println("<h3> Signup Failed...</h3>");
-			rd.include(req, res);
+			req.setAttribute("msg", "something Went Wrong");
+			req.getRequestDispatcher("/RegisterUser.jsp").forward(req, res);
+			
 		}
 		
 	}

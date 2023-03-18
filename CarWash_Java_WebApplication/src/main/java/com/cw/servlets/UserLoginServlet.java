@@ -23,7 +23,7 @@ public class UserLoginServlet extends HttpServlet {
 		String btn = req.getParameter("btn");
 		
 		if(btn.equals("signup")) {
-			RequestDispatcher rd = req.getRequestDispatcher("/registeruser.html");
+			RequestDispatcher rd = req.getRequestDispatcher("/RegisterUser.jsp");
 			rd.forward(req, res);
 		}
 		else if(btn.equals("signin")) {
@@ -35,8 +35,17 @@ public class UserLoginServlet extends HttpServlet {
 				RequestDispatcher rd = req.getRequestDispatcher("/BookSlot.jsp");
 				rd.forward(req, res);
 			}else {
-				
-				req.getRequestDispatcher("/Error.jsp").forward(req, res);
+				boolean isRegistered  = new UserBeanDAO().isRegistered(req.getParameter("uname"));
+				System.out.println(isRegistered);
+				if(isRegistered) {
+					req.setAttribute("msg", "Invalid Username or Password");
+					req.getRequestDispatcher("/LoginUser.jsp").forward(req, res);
+				}
+				else {
+					req.setAttribute("uname", req.getParameter("uname"));
+					
+					req.getRequestDispatcher("/RegisterUser.jsp").forward(req, res);
+				}
 			}
 			
 		}

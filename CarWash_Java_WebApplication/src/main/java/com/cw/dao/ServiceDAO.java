@@ -10,6 +10,22 @@ import com.cw.dto.ServiceBean;
 
 public class ServiceDAO {
 	
+	public float getServiceCost(String serviceName) {
+		float cost = 0;
+		try {
+			PreparedStatement ps = OpenConnection.con.prepareStatement("select service_cost from services where service_name=?");
+			ps.setString(1, serviceName);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				cost = rs.getFloat(1);
+			}
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}
+		return cost;
+	}
+	
 	public ArrayList<ServiceBean> getServices(){
 		ArrayList<ServiceBean> list = new ArrayList<>();
 		

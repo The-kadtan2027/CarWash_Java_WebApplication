@@ -12,22 +12,29 @@ import javax.servlet.http.HttpSession;
 
 import com.cw.dto.AdminBean;
 
+@SuppressWarnings("serial")
 @WebServlet("/adminlogout")
 public class AdminLogoutServlet extends HttpServlet {
 	
 	@Override 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException {
 		
-		PrintWriter pw = res.getWriter();
-		res.setContentType("text/html");
-		
 		HttpSession hs = req.getSession(false);
-		AdminBean adminBean = (AdminBean)hs.getAttribute("admin");
 		
-//		pw.println("<html><body align='center'><h1>Logout Successfull...</h1></body></html>");
-		hs.invalidate();
-		req.getRequestDispatcher("/adminlogin.html").include(req, res);
+		
+		if(hs == null) {
+			req.setAttribute("msg", "Session Expired...");
+			req.getRequestDispatcher("AdminLogin.jsp").forward(req, res);
+		}else {
+			AdminBean adminBean = (AdminBean)hs.getAttribute("admin");
+			if(adminBean != null) {
+					hs.invalidate();
+			}else {
+				req.setAttribute("msg", "Session Expired...");
+			}
+			req.getRequestDispatcher("LoginUser.jsp").forward(req, res);
+		}
+		
+		
 	}
-	
-
 }

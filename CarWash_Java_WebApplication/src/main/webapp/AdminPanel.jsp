@@ -16,17 +16,18 @@
     <div class="wrapper nav">
 
         <div>
-            <a href="addplace.html">Add Places</a>
+            <a href="addplaceview">Add Places</a>
         </div>
         <div>
-            <a href="addservice.html">Add Services</a>
+            <a href="addservicesview">Add Services</a>
         </div>
         <div>
             <a href="ViewBookings.jsp">View All Bookings</a>
 
         </div>
         <div>
-            <a href="acceptbooking">Accept/Reject Bookings</a>
+        <!-- acceptbooking -->
+            <a href="Accept.jsp">Accept/Reject Bookings</a>
 
         </div>
         <div>

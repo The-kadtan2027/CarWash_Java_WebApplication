@@ -21,12 +21,17 @@ body {
     width: 600px;
     margin: auto;
 
+	margin-bottom: 30px;
 
     /* Form Bg */
 
     background: #F6FBF9;
     border-radius: 49.0901px;
 
+}
+div > h1 {
+	margin: 0;
+	padding: 0;
 }
 
 h1 {
@@ -36,7 +41,7 @@ h1 {
     font-size: 3rem;
     line-height: 72px;
     /* or 130% */
-
+	margin: 0;
     color: #32403B;
     text-align: center;
 }
@@ -157,13 +162,21 @@ a {
 
 
 /* view bookings stayles */
-.booking-view {
-    display: flex;
-}
+
+
+
 
 .form-container>button {
     font-size: 20px;
+    
 }
+.table {
+	font-family: "Tilt Neon", cursive;
+	margin: 0;
+	padding: 2rem;
+}
+
+/* table styles */
 
 
 /* Navigation view */
@@ -194,6 +207,7 @@ a {
 .booking {
 	width: 800px;
 	display: flex;
+	justify-content: center;
 	flex-direction: row;
 	margin-bottom: 10px;
 	
@@ -208,3 +222,43 @@ input[type="submit"] {
 	width: 80px;
 	height: 40px
 }
+
+.success-page{
+  max-width:300px;
+  display:block;
+  margin: 0 auto;
+  text-align: center;
+      position: relative;
+    top: 50%;
+    transform: perspective(1px) translateY(50%)
+}
+.success-page img{
+  max-width:62px;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn-view-orders{
+  display: block;
+  border:1px solid #47c7c5;
+  width:100px;
+  margin: 0 auto;
+  margin-top: 45px;
+  padding: 10px;
+  color:#fff;
+  background-color:#47c7c5;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+h2{
+  color:#47c7c5;
+    margin-top: 25px;
+
+}
+a{
+  text-decoration: none;
+}
+
+/* User bookings styles */
+
+

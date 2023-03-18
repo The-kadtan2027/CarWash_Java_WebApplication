@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Book Slot</title>
+
+    <link rel="stylesheet" href="style-users.css">
+
+</head>
+
+<body class="container">
+
+    <div class="user-nav">
+        <h3>Username</h3>
+        <a href="viewUserBookings" class="btn">View Bookings</a>
+        <a href="user-logout" class="btn">Logout</a>
+    </div>
+    <div class="wrapper form_container">
+        <h1>Hi, gajanan</h1>
+        <p>Make an Appointment</p>
+        <form action="bookslot" method="post" class="bookslot">
+            <div class="form_details">
+                <div><input type="text" placeholder="Model Name" name="modelname" class="input_box" /></div>
+                <div><input type="text" placeholder="Vehical Number" name="vNumber" class="input_box" /></div>
+                <div class="select">
+                    <label>Select Place</label>
+
+                    <div>
+                        <select id="places" name="place">
+                            <option>Select Place</option>
+
+                            <option value="Banglore">Banglore</option>
+
+                            <option value="Banglore">Banglore</option>
+
+                            <option value="Hyderabad">Hyderabad</option>
+
+                            <option value="basmath">basmath</option>
+
+                            <option value="Nanded">Nanded</option>
+
+
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <p>Select what services you want</p>
+                    <div id="checkboxes">
+
+
+                        <div class="service">
+                            <label>
+
+                                <input type="checkbox" name="services" value="car wash,100.0" />
+                                car wash - Rs.100.0</label>
+
+                        </div>
+
+                        <div class="service">
+                            <label>
+
+                                <input type="checkbox" name="services" value="Bike Wash,100.0" />
+                                Bike Wash - Rs.100.0</label>
+
+                        </div>
+
+                        <div class="service">
+                            <label>
+
+                                <input type="checkbox" name="services" value="Bike wash with Oiling,150.0" />
+                                Bike wash with Oiling - Rs.150.0</label>
+
+                        </div>
+
+                        <div class="service">
+                            <label>
+
+                                <input type="checkbox" name="services" value="basic car wash,200.0" />
+                                basic car wash - Rs.200.0</label>
+
+                        </div>
+
+                        <div class="service">
+                            <label>
+
+                                <input type="checkbox" name="services" value="Bike Oil Change,500.0" />
+                                Bike Oil Change - Rs.500.0</label>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="date">
+                    <label>Select Booking Date:</label>
+                    <input width="80px" type="date" name="date" />
+                </div>
+
+                <div class="captcha">
+                    <div>
+
+                        <span>Captcha: </span>
+                        <span class="code">3C??=H</span>
+                    </div>
+                    <label>Enter Captcha:</label>
+                    <input type="text" name="captcha">
+                    <input type="hidden" value="3C??=H" name="generatedCaption">
+                </div>
+                <button class="btn">Book</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

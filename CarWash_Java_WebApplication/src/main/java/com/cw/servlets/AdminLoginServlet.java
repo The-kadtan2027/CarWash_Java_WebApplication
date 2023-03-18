@@ -26,18 +26,26 @@ public class AdminLoginServlet extends HttpServlet {
 		
 		if(ab == null) {
 			req.setAttribute("msg", "Invalid UserName of Password");
-			RequestDispatcher rd = req.getRequestDispatcher("/Error.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("AdminLogin.jsp");
 			
 			rd.forward(req, res);
 		}
 		else {
 			HttpSession session = req.getSession();
 			session.setAttribute("admin", ab);
-			RequestDispatcher rd = req.getRequestDispatcher("/AdminPanel.jsp");
-			rd.include(req, res);
-			
+			req.getRequestDispatcher("/AdminPanel.jsp").forward(req, res);
 		}
 		
 		
 	}
+	
+protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		
+		
+		req.getRequestDispatcher("AdminLogin.jsp").forward(req, res);
+			
+		
+		
+	}
+	
 }

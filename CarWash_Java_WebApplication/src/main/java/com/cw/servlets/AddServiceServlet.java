@@ -22,18 +22,12 @@ public class AddServiceServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		
-		PrintWriter pw = res.getWriter();
-		res.setContentType("text/html");
-		
 		HttpSession hs = req.getSession(false);
 		AdminBean ab = (AdminBean)hs.getAttribute("admin");
 		
 		if(ab == null) {
-			pw.println("<h1>login first</h1>");
-			pw.println("<a href='adminlogin.html'>go to login</a>");
-
-			RequestDispatcher rd = req.getRequestDispatcher("/adminlogin.html");
-			rd.forward(req, res);
+			req.setAttribute("msg", "login first");
+			req.getRequestDispatcher("AdminLogin.jsp").forward(req, res);
 			
 		}
 		else {
@@ -42,14 +36,14 @@ public class AddServiceServlet extends HttpServlet {
 			int in = new ServiceDAO().addService(sb);
 			
 			if(in>0) {
-				RequestDispatcher rd = req.getRequestDispatcher("/addservice.html");
-				pw.println("<h3>new Service added</he>");
-				rd.include(req, res);
+				req.setAttribute("success", "Place Added");
+				req.getRequestDispatcher("AddServices.jsp").forward(req, res);
+				
 			}
 			else {
-				RequestDispatcher rd = req.getRequestDispatcher("/addservice.html");
-				pw.println("<h3>Service Not added....!</he>");
-				rd.include(req, res);
+				req.setAttribute("msg", "Something went Wrong....!");
+				req.getRequestDispatcher("AddServices.jsp").forward(req, res);
+				
 			}
 		}
 		

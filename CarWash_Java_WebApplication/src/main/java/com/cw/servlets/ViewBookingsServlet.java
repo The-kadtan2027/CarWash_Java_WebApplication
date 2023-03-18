@@ -25,20 +25,27 @@ public class ViewBookingsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		
 		HttpSession hs = req.getSession(false);
-		AdminBean ab = (AdminBean) hs.getAttribute("admin");
 		
-		if(ab == null) {
+		if(hs != null) {
 			
-			req.setAttribute("msg", "login first");
-			req.getRequestDispatcher("/Error.jsp").forward(req, res);
-
+			AdminBean ab = (AdminBean) hs.getAttribute("admin");
+			if(ab == null) {
+				
+				req.setAttribute("msg", "Your Session is Expired..");
+				req.getRequestDispatcher("/AdminLogin.jsp").forward(req, res);
+				
+			}else {
+				
+				ArrayList<BookingsBean> list = new BookingsDAO().getAllBookings(req);
+				ArrayList<PlaceBean> places = new PlaceDAO().getPlaces();
+				req.setAttribute("places", places);
+				req.setAttribute("bookings", list);
+				req.getRequestDispatcher("/ViewBookings.jsp").forward(req, res);
+				
+			}
 		}else {
-			ArrayList<BookingsBean> list = new BookingsDAO().getAllBookings(req);
-			ArrayList<PlaceBean> places = new PlaceDAO().getPlaces();
-			req.setAttribute("places", places);
-			req.setAttribute("bookings", list);
-			req.getRequestDispatcher("/ViewBookings.jsp").forward(req, res);
-			
+			req.setAttribute("msg", "Your Session is Expired..");
+			req.getRequestDispatcher("/AdminLogin.jsp").forward(req, res);
 		}
 	}
 }

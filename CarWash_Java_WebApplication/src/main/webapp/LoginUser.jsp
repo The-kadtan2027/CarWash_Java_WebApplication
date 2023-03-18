@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,14 +13,18 @@
 </head>
 
 <body>
+	<%
+		String msg = (String)request.getAttribute("msg");
+		String uname = (String)request.getAttribute("username");
+	%>
     <div class="wrapper">
         <h1>User Login</h1>
         <form action="userlogin" method="post">
             <div class="uname">
-                <input type="text" placeholder="Username" name="uname" autocomplete="off" id="uname">
+                <input type="text" placeholder="Username" required="required" autocomplete="off" name="uname" value="<%= uname == null ? "": uname %>" id="uname">
             </div>
             <div class="pword">
-                <input type="password" placeholder="Password" name="pword" id="pword">
+                <input type="password" placeholder="Password" required="required" name="pword" id="pword">
                 <!-- <label for="show">
                     <input type="checkbox" name="show" id="show"> Show Password
                 </label> -->
@@ -33,7 +39,14 @@
 
     </div>
     <div>
-
+		<%
+			if(msg != null){
+				%>
+				<p style="color: red;"><%=msg %></p>
+				<%
+			}
+			
+		%>
     </div>
 </body>
 

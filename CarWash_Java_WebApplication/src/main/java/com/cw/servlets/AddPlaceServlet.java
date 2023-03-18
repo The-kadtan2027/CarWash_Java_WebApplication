@@ -23,18 +23,13 @@ public class AddPlaceServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		
-		PrintWriter pw = res.getWriter();
-		res.setContentType("text/html");
-		
 		HttpSession hs = req.getSession(false);
 		AdminBean ab = (AdminBean) hs.getAttribute("admin");
 		
 		if(ab == null) {
-				pw.println("<h1>login first</h1>");
-				pw.println("<a href='adminlogin.html'>go to login</a>");
-
-				RequestDispatcher rd = req.getRequestDispatcher("/adminlogin.html");
-				rd.forward(req, res);
+				
+				req.setAttribute("msg", "Session Expired");
+				req.getRequestDispatcher("AdminLogin.jsp").forward(req, res);
 				
 			
 		}else {
@@ -44,14 +39,14 @@ public class AddPlaceServlet extends HttpServlet {
 			int in = new PlaceDAO().addPlace(pb);
 			
 			if(in>0) {
-				RequestDispatcher rd = req.getRequestDispatcher("/addplace.html");
-				pw.println("<h3>new Place added</he>");
-				rd.include(req, res);
+				req.setAttribute("msg", "Place Added");
+				req.getRequestDispatcher("AddPlaces.jsp").forward(req, res);
+				
 			}
 			else {
-				RequestDispatcher rd = req.getRequestDispatcher("/addplace.html");
-				pw.println("<h3 style='color:red;'>Failed to add Place</he>");
-				rd.include(req, res);
+				req.setAttribute("msg", "Something went wrong...");
+				req.getRequestDispatcher("AddPlaces.jsp").forward(req, res);
+				
 			}
 		}
 		

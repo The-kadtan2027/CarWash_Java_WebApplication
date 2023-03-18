@@ -14,39 +14,39 @@ import com.cw.dao.BookingsDAO;
 import com.cw.dto.AdminBean;
 import com.cw.dto.BookingsBean;
 
-
 @SuppressWarnings("serial")
 @WebServlet("/acceptbooking")
 public class AcceptRejectViewServlet extends HttpServlet {
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException {
-		
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
 		HttpSession hs = req.getSession(false);
-		AdminBean admin = (AdminBean)hs.getAttribute("admin");
-		if(admin == null) {
+		AdminBean admin = (AdminBean) hs.getAttribute("admin");
+		if (admin == null) {
 			req.setAttribute("msg", "Your Session Has Been Expired....!");
 			req.getRequestDispatcher("/AdminLogin.jsp").forward(req, res);
-		}else {
-			ArrayList<BookingsBean> bookingsList = new BookingsDAO().getPendingBookings();
-			req.setAttribute("bookings", bookingsList);
+		} else {
+//			req.removeAttribute("bookings");
+//			ArrayList<BookingsBean> bookingsList = new BookingsDAO().getPendingBookings();
+//			req.setAttribute("bookings", bookingsList);
 			req.getRequestDispatcher("/Accept.jsp").forward(req, res);
 		}
-		
+
 	}
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException {
-		
-		HttpSession hs = req.getSession(false);
-		AdminBean admin = (AdminBean)hs.getAttribute("admin");
-		if(admin == null) {
-			req.setAttribute("msg", "Your Session Has Been Expired....!");
-			req.getRequestDispatcher("/AdminLogin.jsp").forward(req, res);
-		}else {
-			req.removeAttribute("bookings");
-			ArrayList<BookingsBean> bookingsList = new BookingsDAO().getPendingBookings();
-			req.setAttribute("bookings", bookingsList);
-			req.getRequestDispatcher("/Accept.jsp").forward(req, res);
-		}
-		
+	/*protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+	HttpSession hs = req.getSession(false);
+	AdminBean admin = (AdminBean) hs.getAttribute("admin");
+	if (admin == null) {
+		req.setAttribute("msg", "Your Session Has Been Expired....!");
+		req.getRequestDispatcher("/AdminLogin.jsp").forward(req, res);
+	} else {
+		ArrayList<BookingsBean> bookingsList = new BookingsDAO().getPendingBookings();
+		req.setAttribute("bookings", bookingsList);
+		req.getRequestDispatcher("/Accept.jsp").forward(req, res);
 	}
+
+}*/
+
 }

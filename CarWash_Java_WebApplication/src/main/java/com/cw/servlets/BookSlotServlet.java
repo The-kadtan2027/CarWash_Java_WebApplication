@@ -22,33 +22,50 @@ public class BookSlotServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		HttpSession session = req.getSession(false);
+		HttpSession session = req.getSession();
 		UserBean ub = (UserBean)session.getAttribute("user");
-		
+//		session.removeAttribute("payment");
 		if(ub == null) {
 			req.setAttribute("msg", "Your session is Expired...!");
-			req.getRequestDispatcher("/Error.jsp").forward(req, res);
+			req.getRequestDispatcher("/LoginUser.jsp").forward(req, res);
 		}else {
+			String inputCaptcha = req.getParameter("captcha");
 			
+			StringBuffer services = new StringBuffer();
+			
+			String[] service = req.getParameterValues("services");
+			float amount =0;
+			for(String s: service) {
+				if(!s.equals("null")) {
+						services.append(s.split(",")[0]);
+						amount += (float) Float.parseFloat(s.split(",")[1]);
+				}
+			}
+			
+			String captcha = req.getParameter("generatedCaption");
+			System.out.println(inputCaptcha +"  "+ captcha);
 			String bookingId = idGenerator();
 			String modelName = req.getParameter("modelname");
 			String vehicalNo = req.getParameter("vNumber");
 			String place = req.getParameter("place");
-			String services = Arrays.stream(req.getParameterValues("services")).reduce((t, u) -> u.concat(","+t)).get();
+			
 			String date = req.getParameter("date");
 			String status = "Pending";
-			String name = ub.firstName()+ub.lastName();
+			String name = ub.firstName()+" "+ub.lastName();
 			String username = ub.username();
-			BookingsBean bb = new BookingsBean(bookingId,name,username,services,status,place,date,modelName,vehicalNo);
+			BookingsBean bb = new BookingsBean(bookingId,name,username,services.toString(),status,place,date,modelName,vehicalNo,amount);
+//			
+//			String id = new BookingsDAO().bookSlot(bb);
 			
-			String id = new BookingsDAO().bookSlot(bb);
 			
-			if(id != null) {
-				req.setAttribute("msg", "Your Slot is Booked, " + id);
-				req.getRequestDispatcher("/BookSlot.jsp").forward(req, res);
+			if(inputCaptcha.equals(captcha)) {
+				
+				session.setAttribute("payment", bb);
+				
+				req.getRequestDispatcher("PaymentWay.jsp").forward(req, res);
 			}else {
-				req.setAttribute("msg", "Failed to Book a Slot....");
-				req.getRequestDispatcher("/BookSlot.jsp").forward(req, res);
+				req.setAttribute("msg", "Invalid Captcha code...");
+				req.getRequestDispatcher("BookSlot.jsp").forward(req, res);
 			}
 			
 

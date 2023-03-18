@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +26,18 @@
 			<button>Login</button>
 		</form>
 
+	</div>
+	
+	<div>
+		<%
+			String msg = (String)request.getAttribute("msg");
+			if(msg != null){
+				%>
+				<h1><%= msg %></h1>
+				<%
+			}
+		
+		%>
 	</div>
 </body>
 
